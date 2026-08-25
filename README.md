@@ -26,7 +26,7 @@ Actualmente se presentan dificultades como reservas duplicadas, poca visibilidad
 ## Tecnologías
 
 - Java 21
-- Apache Maven 3.9.x
+- Apache Maven 3.9.16
 - Git y GitHub
 - JUnit 5
 - Spring Boot, cuando corresponda
@@ -48,8 +48,6 @@ mvn clean test
 ## Ejecución
 
 ```bash
-mvn package
-java -jar target/NOMBRE-DEL-ARCHIVO.jar
 ```
 
 Adapte los comandos de ejecución a la estructura real del proyecto.
@@ -75,9 +73,11 @@ README.md
 
 ## Funcionalidades
 
-- Funcionalidad implementada 1.
-- Funcionalidad implementada 2.
-- Funcionalidad pendiente.
+- Confirmar una reserva.
+- Cancelar una reserva.
+- Verificar disponibilidad.
+- Enviar notificaciones.
+- Evitar reservas duplicadas.
 
 ## Pruebas
 
@@ -95,7 +95,7 @@ El proyecto utiliza la rama `main`. Las funcionalidades se desarrollan en ramas 
 
 ## Uso de inteligencia artificial
 
-Indique si utilizó herramientas de inteligencia artificial, la herramienta empleada, el propósito y las partes revisadas o adaptadas. El estudiante es responsable de comprender, probar y justificar todo el contenido entregado.
+Se ha usado herramienteas de inteligencia artifical Gemini de Google, el proposito fue para aclarar ciertas dudas de la sintaxis de Java, aclarar como se puede implementar una arquitectura limpia y ayuda para entener como se genera el archivo .puml. 
 
 ## Autor
 
