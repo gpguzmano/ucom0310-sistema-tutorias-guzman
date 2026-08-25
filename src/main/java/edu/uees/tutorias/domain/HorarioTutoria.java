@@ -11,6 +11,26 @@ public class HorarioTutoria {
     private boolean disponible;
 
     public HorarioTutoria(String id, Docente docente, Asignatura asignatura, LocalDateTime fechaHoraInicio, LocalDateTime fechaHoraFin) {
+        if (id == null || id.isBlank()) {
+            throw new IllegalArgumentException("El ID es obligatorio,");
+        }
+
+        if (docente == null) {
+            throw new IllegalArgumentException("El docente es obligatorio.");
+        }
+
+        if (asignatura == null) {
+            throw new IllegalArgumentException("La asignatura es obligatoria.");
+        }
+
+        if (fechaHoraInicio == null) {
+            throw new IllegalArgumentException("La fecha/hora inicio es obligatoria.");
+        }
+
+        if (fechaHoraFin == null) {
+            throw new IllegalArgumentException("La fecha/hora fin es obligatoria.");
+        }
+
         this.id = id;
         this.docente = docente;
         this.asignatura = asignatura;
