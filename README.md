@@ -3,11 +3,11 @@
 ## Información general
 
 - **Universidad:** Universidad de Especialidades Espíritu Santo
-- **Carrera:** IngeniComputación
+- **Carrera:** Ingeniería en Ciencas de la Computación
 - **Asignatura:** Diseño de Software
 - **Código:** UCOM0310
 - **Periodo:** PEL 4 - 2026
-- **Estudiante:** Gonzalo Guzmàn Ordòñez
+- **Estudiante:** Gonzalo Guzmán Ordóñez
 - **Docente:** Ph.D. Jaime Paul Sayago Heredia
 
 ## Descripción
@@ -55,20 +55,22 @@ Adapte los comandos de ejecución a la estructura real del proyecto.
 ## Estructura del proyecto
 
 ```text
-src/
-├── main/
-│   └── java/
-│       └── edu/uees/tutorias/
-│           └── domain/
-│           └── infrastructure/
-│           └── usecase/
-│── test/
-│   └── java/
-docs/
-│──modelo-clases.png
-│──modelo-clases.puml
-pom.xml
-README.md
+sistema-tutorias/
+│── docs/
+│   └── modelo-clases.png
+│   └── modelo-clases.puml
+│── src/
+│   ├── main/
+│   │   └── java/
+│   │       └── edu/uees/tutorias/
+│   │           └── app/
+│   │           └── domain/
+│   │           └── infrastructure/
+│   │           └── usecase/
+│   └── test/
+│       └── java/
+│── pom.xml
+│── README.md
 ```
 
 ## Funcionalidades

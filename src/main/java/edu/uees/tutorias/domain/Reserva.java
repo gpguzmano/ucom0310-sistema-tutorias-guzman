@@ -3,11 +3,11 @@ package edu.uees.tutorias.domain;
 import java.time.LocalDateTime;
 
 public class Reserva {
-    private String id;
-    private Estudiante estudiante;
-    private HorarioTutoria horario;
+    private final String id;
+    private final Estudiante estudiante;
+    private final HorarioTutoria horario;
     private EstadoReserva estado;
-    private LocalDateTime fechaCreacion;
+    private final LocalDateTime fechaCreacion;
 
     public Reserva(String id, Estudiante estudiante, HorarioTutoria horario) {
         if (id == null || id.isBlank()) {

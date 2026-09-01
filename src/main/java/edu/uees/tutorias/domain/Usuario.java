@@ -25,4 +25,5 @@ public abstract class Usuario {
 
     public String getId() { return id; }
     public String getNombre() { return nombre; }
-    public String getCorreo() { return correo; }}
+    public String getCorreo() { return correo; }
+}
