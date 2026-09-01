@@ -85,6 +85,10 @@ package "com.uees.tutorias.factory" {
   class NotificadorWhatsApp {
     + enviarNotificacion(destinatario: String, asunto: String, cuerpo: String): void
   }
+
+  class NotificadorSms {
+    + enviarNotificacion(destinatario: String, asunto: String, cuerpo: String): void
+  }
 }
 
 package "com.uees.tutorias.usecase" {
@@ -123,12 +127,12 @@ Reserva "1" --> "1" EstadoReserva
 
 ' Relaciones de la capa de Casos de Uso
 ServicioReservas --> RepositorioReservas
-ServicioReservas --> Notificador
 ServicioReservas ..> Reserva : usa
 
 ' Implementaciones de Infraestructura (Principio de Inversión de Dependencias - DIP)
 RepositorioReservas ..|> RepositorioReservas
 NotificadorEmail ..|> Notificador
 NotificadorWhatsApp ..|> Notificador
+NotificadorSms ..|> Notificador
 
 @enduml

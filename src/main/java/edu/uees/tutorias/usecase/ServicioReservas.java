@@ -3,10 +3,7 @@ package edu.uees.tutorias.usecase;
 import edu.uees.tutorias.domain.Estudiante;
 import edu.uees.tutorias.domain.HorarioTutoria;
 import edu.uees.tutorias.domain.Reserva;
-import edu.uees.tutorias.factory.EmailCreator;
-import edu.uees.tutorias.factory.Notificador;
-import edu.uees.tutorias.factory.NotificadorCreator;
-import edu.uees.tutorias.factory.WhatsAppCreator;
+import edu.uees.tutorias.factory.*;
 
 public class ServicioReservas {
     private final RepositorioReservas repositorioReservas;
@@ -33,6 +30,13 @@ public class ServicioReservas {
                 "El estudiante " + estudiante.getNombre() + " ha reservado el horario."
         );
 
+        NotificadorCreator smsCreator = new SmsCreator();
+        smsCreator.notificar(
+                horario.getDocente().getCelular(),
+                "Nueva Tutoría Solicitada",
+                "El estudiante " + estudiante.getNombre() + " ha reservado el horario."
+        );
+
         return nuevaReserva;
     }
 
@@ -52,6 +56,13 @@ public class ServicioReservas {
 
         NotificadorCreator whatsAppCreator = new WhatsAppCreator();
         whatsAppCreator.notificar(
+                reserva.getHorario().getDocente().getCelular(),
+                "Tutoría Cancelada",
+                "La reserva del estudiante " + reserva.getEstudiante().getNombre() + " ha sido cancelada."
+        );
+
+        NotificadorCreator smsCreator = new SmsCreator();
+        smsCreator.notificar(
                 reserva.getHorario().getDocente().getCelular(),
                 "Tutoría Cancelada",
                 "La reserva del estudiante " + reserva.getEstudiante().getNombre() + " ha sido cancelada."
