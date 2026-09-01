@@ -1,5 +1,6 @@
 package edu.uees.tutorias.usecase;
 
+import edu.uees.tutorias.builder.ReservaBuilder;
 import edu.uees.tutorias.domain.Estudiante;
 import edu.uees.tutorias.domain.HorarioTutoria;
 import edu.uees.tutorias.domain.Reserva;
@@ -13,7 +14,11 @@ public class ServicioReservas {
     }
 
     public Reserva crearReserva(String idReserva, Estudiante estudiante, HorarioTutoria horario) {
-        Reserva nuevaReserva = new Reserva(idReserva, estudiante, horario);
+        Reserva nuevaReserva = new ReservaBuilder()
+                .id(idReserva)
+                .estudiante(estudiante)
+                .horario(horario)
+                .build();
         repositorioReservas.guardar(nuevaReserva);
 
         NotificadorCreator emailCreator = new EmailCreator();

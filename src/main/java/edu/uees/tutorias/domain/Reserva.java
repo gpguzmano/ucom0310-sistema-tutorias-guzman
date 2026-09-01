@@ -2,7 +2,7 @@ package edu.uees.tutorias.domain;
 
 import java.time.LocalDateTime;
 
-public class Reserva {
+public final class Reserva {
     private final String id;
     private final Estudiante estudiante;
     private final HorarioTutoria horario;
@@ -10,22 +10,6 @@ public class Reserva {
     private final LocalDateTime fechaCreacion;
 
     public Reserva(String id, Estudiante estudiante, HorarioTutoria horario) {
-        if (id == null || id.isBlank()) {
-            throw new IllegalArgumentException("El ID es obligatorio.");
-        }
-
-        if (estudiante == null) {
-            throw new IllegalArgumentException("El estudiante es obligatorio.");
-        }
-
-        if (horario == null) {
-            throw new IllegalArgumentException("El horario es obligatorio.");
-        }
-
-        if (!horario.estaDisponible()) {
-            throw new IllegalArgumentException("No se puede crear una reserva para un horario no disponible.");
-        }
-
         this.id = id;
         this.estudiante = estudiante;
         this.horario = horario;
