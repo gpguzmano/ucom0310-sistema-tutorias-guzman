@@ -1,0 +1,155 @@
+@startuml
+
+abstract class Usuario {
+  - id: String
+  - nombre: String
+  - correo: String
+  - celular: String
+  + getId(): String
+  + getNombre(): String
+  + getCorreo(): String
+  + getCelular(): String
+}
+
+enum EstadoReserva {
+  PENDIENTE
+  CONFIRMADA
+  CANCELADA
+  REALIZADA
+}
+
+class Estudiante {
+  - matricula: String
+  + getMatricula(): String
+}
+
+class Docente {
+  - departamento: String
+  + getDepartamento(): String
+}
+
+class Asignatura {
+  - id: String
+  - codigo: String
+  - nombre: String
+  + getId(): String
+  + getCodigo(): String
+  + getNombre(): String
+}
+
+class HorarioTutoria {
+  - id: String
+  - docente: Docente
+  - asignatura: Asignatura
+  - fechaHoraInicio: LocalDateTime
+  - fechaHoraFin: LocalDateTime
+  - disponible: boolean
+  + estaDisponible(): boolean
+  + ocuparHorario(): void
+  + liberarHorario(): void
+  + getId(): String
+  + getDocente(): Docente
+  + getAsignatura(): Asignatura
+  + getFechaHoraInicio(): LocalDateTime
+  + getFechaHoraFin(): LocalDateTime
+}
+
+class Reserva {
+  - id: String
+  - estudiante: Estudiante
+  - horario: HorarioTutoria
+  - estado: EstadoReserva
+  - fechaCreacion: LocalDateTime
+  + confirmar(): void
+  + cancelar(): void
+  + marcarComoRealizada(): void
+  + getId(): String
+  + getEstudiante(): Estudiante
+  + getHorario(): HorarioTutoria
+  + getEstado(): EstadoReserva
+  + getFechaCreacion(): LocalDateTime
+}
+
+interface Notificador {
+  + enviarNotificacion(destinatario: String, asunto: String, cuerpo: String): void
+}
+
+class NotificadorEmail {
+  + enviarNotificacion(destinatario: String, asunto: String, cuerpo: String): void
+}
+
+class NotificadorWhatsApp {
+  + enviarNotificacion(destinatario: String, asunto: String, cuerpo: String): void
+}
+
+class NotificadorSms {
+  + enviarNotificacion(destinatario: String, asunto: String, cuerpo: String): void
+}
+
+interface RepositorioReservas {
+  + guardar(reserva: Reserva): void
+  + buscarPorId(id: String): Optional<Reserva>
+  + actualizar(reserva: Reserva): void
+}
+
+class ServicioReservas {
+  - repositorioReservas: RepositorioReservas
+  - notificador: Notificador
+  + crearReserva(idReserva: String, estudiante: Estudiante, horario: HorarioTutoria): Reserva
+  + cancelarReserva(idReserva: String): void
+}
+
+class RepositorioReservas {
+  + guardar(reserva: Reserva): void
+  + buscarPorId(id: String): Optional<Reserva>
+  + actualizar(reserva: Reserva): void
+}
+
+abstract class NotificadorCreator {
+    # crearNotificador(): Notificador
+    + notificar(destino: String, mensaje: String): void
+}
+
+class EmailCreator
+class WhatsAppCreator
+class SmsCreator
+
+class ReservaBuilder {
+    + id(valor : String) : ReservaBuilder
+    + estudiante(valor : Estudiante) : ReservaBuilder
+    + horario(valor : HorarioTutoria) : ReservaBuilder
+    + build() : Reserva
+}
+
+' Herencia de Dominio
+Usuario <|-- Estudiante
+Usuario <|-- Docente
+
+' Relaciones entre clases del Dominio
+HorarioTutoria "1" *-- "1" Docente
+HorarioTutoria "1" *-- "1" Asignatura
+Reserva "1" *-- "1" Estudiante
+Reserva "1" *-- "1" HorarioTutoria
+Reserva "1" --> "1" EstadoReserva
+
+' Relaciones de la capa de Casos de Uso
+ServicioReservas --> RepositorioReservas
+ServicioReservas ..> Reserva : usa
+
+' Implementaciones de Infraestructura (Principio de Inversión de Dependencias - DIP)
+RepositorioReservas ..|> RepositorioReservas
+NotificadorEmail ..|> Notificador
+NotificadorWhatsApp ..|> Notificador
+NotificadorSms ..|> Notificador
+
+NotificadorCreator <|-- EmailCreator
+NotificadorCreator <|-- WhatsAppCreator
+NotificadorCreator <|-- SmsCreator
+
+EmailCreator ..> NotificadorEmail : crea
+WhatsAppCreator ..> NotificadorWhatsApp : crea
+WhatsAppCreator ..> NotificadorSms : crea
+
+ReservaBuilder ..> Reserva : construye
+
+@enduml
