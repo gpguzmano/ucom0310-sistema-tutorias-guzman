@@ -6,9 +6,11 @@ package "com.uees.tutorias.domain" {
     - id: String
     - nombre: String
     - correo: String
+    - celular: String
     + getId(): String
     + getNombre(): String
     + getCorreo(): String
+    + getCelular(): String
   }
 
   enum EstadoReserva {
