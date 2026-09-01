@@ -3,6 +3,7 @@ package edu.uees.tutorias.usecase;
 import edu.uees.tutorias.domain.Estudiante;
 import edu.uees.tutorias.domain.HorarioTutoria;
 import edu.uees.tutorias.domain.Reserva;
+import edu.uees.tutorias.factory.Notificador;
 
 public class ServicioReservas {
     private final RepositorioReservas repositorioReservas;

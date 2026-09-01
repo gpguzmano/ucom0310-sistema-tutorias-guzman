@@ -71,15 +71,25 @@ package "com.uees.tutorias.domain" {
   }
 }
 
+package "com.uees.tutorias.factory" {
+  interface Notificador {
+    + enviarNotificacion(destinatario: String, asunto: String, cuerpo: String): void
+  }
+
+  class NotificadorEmail {
+    + enviarNotificacion(destinatario: String, asunto: String, cuerpo: String): void
+  }
+
+  class NotificadorWhatsApp {
+    + enviarNotificacion(destinatario: String, asunto: String, cuerpo: String): void
+  }
+}
+
 package "com.uees.tutorias.usecase" {
   interface RepositorioReservas {
     + guardar(reserva: Reserva): void
     + buscarPorId(id: String): Optional<Reserva>
     + actualizar(reserva: Reserva): void
-  }
-
-  interface Notificador {
-    + enviarNotificacion(destinatario: String, asunto: String, cuerpo: String): void
   }
 
   class ServicioReservas {
@@ -95,14 +105,6 @@ package "com.uees.tutorias.infrastructure" {
     + guardar(reserva: Reserva): void
     + buscarPorId(id: String): Optional<Reserva>
     + actualizar(reserva: Reserva): void
-  }
-
-  class ServicioCorreo {
-    + enviarNotificacion(destinatario: String, asunto: String, cuerpo: String): void
-  }
-
-  class ServicioWhatsApp {
-    + enviarNotificacion(destinatario: String, asunto: String, cuerpo: String): void
   }
 }
 
@@ -124,7 +126,7 @@ ServicioReservas ..> Reserva : usa
 
 ' Implementaciones de Infraestructura (Principio de Inversión de Dependencias - DIP)
 RepositorioReservas ..|> RepositorioReservas
-ServicioCorreo ..|> Notificador
-ServicioWhatsApp ..|> Notificador
+NotificadorEmail ..|> Notificador
+NotificadorWhatsApp ..|> Notificador
 
 @enduml

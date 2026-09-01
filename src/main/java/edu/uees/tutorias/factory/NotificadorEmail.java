@@ -1,8 +1,6 @@
-package edu.uees.tutorias.infrastructure;
+package edu.uees.tutorias.factory;
 
-import edu.uees.tutorias.usecase.Notificador;
-
-public class ServicioWhatsApp implements Notificador {
+public class NotificadorEmail implements Notificador {
 
     @Override
     public void enviarNotificacion(String destinatario, String asunto, String cuerpo) {
