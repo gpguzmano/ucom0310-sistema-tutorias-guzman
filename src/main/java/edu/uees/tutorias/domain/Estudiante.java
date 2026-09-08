@@ -1,17 +1,17 @@
 package edu.uees.tutorias.domain;
 
 public class Estudiante extends Usuario {
-    private final String matricula;
+    private final String codigoEstudiante;
 
-    public Estudiante(String id, String nombres, String email, String celular, String matricula) {
-        super(id, nombres, email, celular);
+    public Estudiante(String id, String nombres, String email, String codigoMatricula) {
+        super(id, nombres, email);
 
-        if (matricula == null || matricula.isBlank()) {
-            throw new IllegalArgumentException("La matricula es obligatoria.");
+        if (codigoMatricula == null || codigoMatricula.isBlank()) {
+            throw new IllegalArgumentException("El código del estudiante es obligatoria.");
         }
 
-        this.matricula = matricula;
+        this.codigoEstudiante = codigoMatricula;
     }
 
-    public String getMatricula() { return matricula; }
+    public String getCodigoEstudiante() { return codigoEstudiante; }
 }

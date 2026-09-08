@@ -1,17 +1,17 @@
 package edu.uees.tutorias.domain;
 
 public class Docente extends Usuario {
-    private final String departamento;
+    private final String codigoDocente;
 
-    public Docente(String id, String nombres, String email, String celular, String departamento) {
-        super(id, nombres, email, celular);
+    public Docente(String id, String nombres, String email, String codigoDocente) {
+        super(id, nombres, email);
 
-        if (departamento == null || departamento.isBlank()) {
-            throw new IllegalArgumentException("El departamento es obligatorio.");
+        if (codigoDocente == null || codigoDocente.isBlank()) {
+            throw new IllegalArgumentException("El código del docente es obligatorio.");
         }
 
-        this.departamento = departamento;
+        this.codigoDocente = codigoDocente;
     }
 
-    public String getDepartamento() { return departamento; }
+    public String getCodigoDocente() { return codigoDocente; }
 }
