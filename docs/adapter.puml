@@ -1,0 +1,20 @@
+@startuml
+
+interface Videoconferencia {
+    + crearSala(titulo: String, correoDocente: String): String
+}
+
+class ProveedorZoom {
+    + generarMeeting(topic: String, hostEmail: String): String
+}
+
+class ZoomAdapter {
+    -zoom: ProveedorZoom
+    +ZoomAdapter(zoom: ProveedorZoom)
+    +crearSala(titulo: String, correoDocente: String): String
+}
+
+Videoconferencia <|.. ZoomAdapter
+ZoomAdapter --> ProveedorZoom
+
+@enduml
