@@ -6,14 +6,16 @@ public final class Reserva {
     private final String id;
     private final Estudiante estudiante;
     private final HorarioTutoria horario;
+    private final Modalidad modalidad;
     private EstadoReserva estado;
     private final LocalDateTime fechaCreacion;
 
-    public Reserva(String id, Estudiante estudiante, HorarioTutoria horario) {
+    public Reserva(String id, Estudiante estudiante, HorarioTutoria horario, Modalidad modalidad, EstadoReserva estado) {
         this.id = id;
         this.estudiante = estudiante;
         this.horario = horario;
-        this.estado = EstadoReserva.PENDIENTE;
+        this.modalidad = modalidad;
+        this.estado = estado;
         this.fechaCreacion = LocalDateTime.now();
         this.horario.ocuparHorario();
     }

@@ -4,7 +4,7 @@ import edu.uees.tutorias.domain.Reserva;
 
 import java.util.Optional;
 
-public class RepositorioReservas implements edu.uees.tutorias.usecase.RepositorioReservas {
+public class RepositorioReservas implements edu.uees.tutorias.service.RepositorioReservas {
 
     @Override
     public void guardar(Reserva reserva) {

@@ -1,4 +1,4 @@
-package edu.uees.tutorias.usecase;
+package edu.uees.tutorias.service;
 
 import edu.uees.tutorias.builder.ReservaBuilder;
 import edu.uees.tutorias.domain.Estudiante;

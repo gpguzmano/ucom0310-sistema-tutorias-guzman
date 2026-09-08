@@ -1,13 +1,13 @@
 package edu.uees.tutorias.builder;
 
-import edu.uees.tutorias.domain.Estudiante;
-import edu.uees.tutorias.domain.HorarioTutoria;
-import edu.uees.tutorias.domain.Reserva;
+import edu.uees.tutorias.domain.*;
 
 public class ReservaBuilder {
     private String id;
     private Estudiante estudiante;
     private HorarioTutoria horario;
+    private Modalidad modalidad = Modalidad.PRESENCIAL;
+    private EstadoReserva estado = EstadoReserva.PENDIENTE;
 
     public ReservaBuilder id(String id) {
         this.id = id;
@@ -27,10 +27,16 @@ public class ReservaBuilder {
         return this;
     }
 
+    public ReservaBuilder modalidad(Modalidad modalidad) {
+        this.modalidad = modalidad;
+
+        return this;
+    }
+
     public Reserva build() {
         validar();
 
-        return new Reserva(id, estudiante, horario);
+        return new Reserva(id, estudiante, horario, modalidad, estado);
     }
 
     private void validar() {
