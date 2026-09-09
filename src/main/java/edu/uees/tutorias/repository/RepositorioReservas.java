@@ -1,4 +1,4 @@
-package edu.uees.tutorias.service;
+package edu.uees.tutorias.repository;
 
 import edu.uees.tutorias.domain.Reserva;
 

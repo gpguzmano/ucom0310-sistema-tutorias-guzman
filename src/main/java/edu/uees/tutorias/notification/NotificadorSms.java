@@ -1,4 +1,4 @@
-package edu.uees.tutorias.factory;
+package edu.uees.tutorias.notification;
 
 public class NotificadorSms implements Notificador {
     @Override

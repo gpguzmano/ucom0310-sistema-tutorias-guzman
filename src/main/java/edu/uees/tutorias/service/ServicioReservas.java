@@ -5,6 +5,7 @@ import edu.uees.tutorias.domain.Estudiante;
 import edu.uees.tutorias.domain.HorarioTutoria;
 import edu.uees.tutorias.domain.Reserva;
 import edu.uees.tutorias.factory.*;
+import edu.uees.tutorias.repository.RepositorioReservas;
 
 public class ServicioReservas {
     private final RepositorioReservas repositorioReservas;
