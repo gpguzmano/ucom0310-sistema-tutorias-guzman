@@ -9,6 +9,7 @@ public final class Reserva {
     private final Modalidad modalidad;
     private EstadoReserva estado;
     private final LocalDateTime fechaCreacion;
+    private String enlaceReunion;
 
     public Reserva(String id, Estudiante estudiante, HorarioTutoria horario, Modalidad modalidad, EstadoReserva estado) {
         this.id = id;
@@ -47,4 +48,9 @@ public final class Reserva {
     public HorarioTutoria getHorario() { return horario; }
     public EstadoReserva getEstado() { return estado; }
     public LocalDateTime getFechaCreacion() { return fechaCreacion; }
+    public String getEnlaceReunion() { return enlaceReunion; }
+
+    public void asginarEnlaceReunion(String enlaceReunion) {
+        this.enlaceReunion = enlaceReunion;
+    }
 }

@@ -1,5 +1,6 @@
 package edu.uees.tutorias.service;
 
+import edu.uees.tutorias.adapter.Videoconferencia;
 import edu.uees.tutorias.builder.ReservaBuilder;
 import edu.uees.tutorias.domain.Estudiante;
 import edu.uees.tutorias.domain.HorarioTutoria;
@@ -18,16 +19,21 @@ import java.util.List;
 public class ServicioReservas {
     private final RepositorioReservas repositorioReservas;
     private final PoliticaCancelacion politicaCancelacion;
+    private final Videoconferencia video;
     private final List<ObservadorReserva> observadores = new ArrayList<ObservadorReserva>();
 
-    public ServicioReservas(RepositorioReservas repositorioReservas, Notificador notificador) {
+    public ServicioReservas(RepositorioReservas repositorioReservas,
+                            Notificador notificador,
+                            Videoconferencia video) {
         this(repositorioReservas,
                 notificador,
+                video,
                 new PoliticaCancelacionNormal());
     }
 
     public ServicioReservas(RepositorioReservas repositorioReservas,
                             Notificador notificador,
+                            Videoconferencia video,
                             PoliticaCancelacion politicaCancelacion) {
         if (repositorioReservas == null) {
             throw new IllegalArgumentException("El repositorio es obligatorio.");
@@ -42,6 +48,7 @@ public class ServicioReservas {
         }
 
         this.repositorioReservas = repositorioReservas;
+        this.video = video;
         this.politicaCancelacion = politicaCancelacion;
         agregarObservador(new ObservadorNotificador(notificador));
     }
@@ -60,6 +67,10 @@ public class ServicioReservas {
                 .estudiante(estudiante)
                 .horario(horario)
                 .build();
+
+        String enlace = video.crearSala("Tutoria creada", horario.getDocente().getNombre());
+        nuevaReserva.asginarEnlaceReunion(enlace);
+        
         repositorioReservas.guardar(nuevaReserva);
 
         notificarObservadores(nuevaReserva, "Su reserva fue creada y se encuentra pendiente de confirmación.");
